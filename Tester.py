@@ -15,7 +15,6 @@ from MultiwayTree import multiwayTree
 class Tester:
     def __init__ (self,n):
          self.numberOfNodes = n
-
          keywords= pd.read_csv("adhoc_wordlist.csv")
          df = pd.DataFrame(keywords)
          keywordList = df[["KEYWORDS"]].values.tolist()
@@ -27,7 +26,7 @@ class Tester:
          self.maxReferencesPerNode = 35
 
     def assignDummyKeyWords(self,node):   
-    
+        # Dummy nodes need Keywords
         numberOfKeywords = random.randint(1,len(self.keywordList))
         for i in range(numberOfKeywords):
             node.keywordList.append(random.choice(self.keywordList))
@@ -128,7 +127,7 @@ class Tester:
     def dummyNodeSearchTest(self,numberOfSearchTerms):
 
         # Generate Dummy Nodes
-        startTime = time.time()
+        #startTime = time.time()
         nodeList = self.generateDummyNodes()
 
         #Initialize multiway Tree
@@ -137,17 +136,11 @@ class Tester:
         #Conduct search and print metrics
         numberOfSearchTerms = random.randint(1,len(self.keywordList))
         searchList = sample(self.keywordList,numberOfSearchTerms)
-        startTime = time.time()
-        searchResults = tree.keyWordSearch(searchList)
-        subcategoies = tree.subCategorizer([1,2,3,4,5,6,7,8,8,9])
-        for key in subcategoies:
-            print(key,":",subcategoies[key])
-        # print ("Tree Stats")
-        # for keyword in tree.keywords:
-        #     print(keyword,": ",len(tree.nodeDictionary[keyword].successors))       
+
+        #startTime = time.time()
+        searchResults = tree.keyWordSearch(searchList)    
         return searchResults
         
 tester = Tester(10000)
 output = tester.dummyNodeSearchTest(5)
-# for key in output:
-#     print(key,":",output[key])
+print (output)

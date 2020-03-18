@@ -89,7 +89,8 @@ class multiwayTree:
             self.nodeDictionary[node.articleID] = node 
 
             #Authors Initialized in self.authorDictionary
-            node.authorList = node.authorList.lower()
+            for author in node.authorList:
+                node.authorList = node.authorList.lower()
             authors = node.authorList
             # no need to check if author already exists or not because dict[a] is created if not already present.
             for author in authors:
